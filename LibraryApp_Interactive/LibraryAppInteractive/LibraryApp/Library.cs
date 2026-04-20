@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+
 namespace LibraryAppInteractive;
 
 /// <summary>
@@ -31,23 +33,69 @@ public class Library
 
     }
 
+    /// <summary>
+    /// Gives unique ID. each new id is increased by 1
+    /// </summary>
+    /// <returns>_libIDGeneratorSeed</returns>
+    
     public int DetermineLibID()
     {
-        throw new NotImplementedException();
+        _libIDGeneratorSeed++;
+        return _libIDGeneratorSeed;
     }
 
-    public Book RegisterBook(string bookName, string bookISBN, string[] authors, BookType bookType, int nCopies)
+    /// <summary>
+    /// gives the book its properties based on whether its paper or digital
+    /// adds assets
+    /// </summary>
+    /// <param name="bookName"></param>
+    /// <param name="bookISBN"></param>
+    /// <param name="authors"></param>
+    /// <param name="bookType"></param>
+    /// <param name="nCopies"></param>
+    /// <returns>book</returns>
+    public Book RegisterBook(string bookName, string bookISBN, List<string> authors, BookType bookType, int nCopies)
     {
-        throw new NotImplementedException();
-    }
+        Book book;
 
+        if (bookType == BookType.Paper)
+        
+            book = new PaperBook(bookName, bookISBN);
+
+        else
+            book = new DigitalBook(bookName, bookISBN);
+
+        book.Authors = authors;
+
+        for (int i = 0; i < nCopies; i++)
+        {
+            int id = DetermineLibID();
+            var asset = new LibraryAsset(id, book);
+            book.Assets.Add(asset);
+        }
+
+        _bookList.Add(book);
+
+        return book;
+    }
+    /// <summary>
+    /// finds and returns the book based on name
+    /// </summary>
+    /// <param name="bookName"></param>
+    /// <returns></returns>
     public Book FindBookByName(string bookName)
     {
-        throw new NotImplementedException();
+        //Ai asked how to get the book name to lower case
+        return _bookList.FirstOrDefault(b => b.Name.ToLower().Contains(bookName.ToLower()));
     }
 
+    /// <summary>
+    /// finds and returns book based on ISBN
+    /// </summary>
+    /// <param name="bookISBN"></param>
+    /// <returns></returns>
     public Book FindBookByISBN(string bookISBN)
     {
-        throw new NotImplementedException();
+        return _bookList.FirstOrDefault(b => b.Name.ToLower().Contains(bookISBN.ToLower()));
     }
 }

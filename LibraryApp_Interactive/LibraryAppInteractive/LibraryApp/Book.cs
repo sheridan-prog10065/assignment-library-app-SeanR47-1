@@ -17,7 +17,6 @@ public class Book
     private List<string> _bookAuthorsList;
     private List<LibraryAsset> _libAssetsList;
     private List<string> _bookAuthorList;
-    private IEnumerable<LibraryAsset> _libAssetList;
 
     //Constructor
     public Book(string bookName, string bookISBN)
@@ -49,10 +48,10 @@ public class Book
         set { _bookAuthorList = value; }
     }
 
-    public IEnumerable<LibraryAsset> Assets
+    public List<LibraryAsset> Assets
     {
-        get { return _libAssetList; }
-        set { _libAssetList = (List<LibraryAsset>)value; }
+        get { return _libAssetsList; }
+        set { _libAssetsList = value; }
     }
 
     public bool CheckAvailability()

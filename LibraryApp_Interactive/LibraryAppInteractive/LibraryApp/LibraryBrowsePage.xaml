@@ -4,7 +4,7 @@
              x:Class="LibraryAppInteractive.LibraryBrowsePage"
              Title="Browse Interactive Library">
 
-    <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, *"
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, *"
           Margin="20, 20, 20, 20">
 
         <Label Text="Search for a book"
@@ -44,6 +44,14 @@
         <Button Text="Return" Clicked="OnReturn"
                 Grid.Row="3"
                 Grid.Column="2"/>
+
+        <Label x:Name="_lblStatus"
+               Text=""
+               FontSize="Medium"
+               Grid.Row="4"
+               Grid.Column="0"
+               Grid.ColumnSpan="3"
+               Margin="10"/>
 
     </Grid>
 </ContentPage>

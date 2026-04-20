@@ -5,7 +5,7 @@
              x:Class="LibraryAppInteractive.LibraryAdminPage"
              Title="Manage Book Assets">
     <ContentPage.Content>
-        <Grid RowDefinitions="*, Auto, Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="*, *, *"
+        <Grid RowDefinitions="*, Auto, Auto, Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="*, *, *"
               Margin="20, 20, 20, 20">
             <Label Text="Add a new book: "
                    FontSize="Medium"
@@ -52,6 +52,14 @@
                     Grid.Row="6"
                     Grid.Column="0"
                     Margin="20"/>
+
+            <Label x:Name="_lblResult"
+                   Text=""
+                   FontSize="Medium"
+                   Grid.Row="7"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Margin="10"/>
 
         </Grid>
     </ContentPage.Content>
