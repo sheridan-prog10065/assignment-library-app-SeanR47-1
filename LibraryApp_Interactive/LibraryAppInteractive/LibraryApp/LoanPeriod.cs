@@ -6,10 +6,12 @@ namespace LibraryAppInteractive;
 
 public struct LoanPeriod
 {
+    //Fields
     private DateTime _borrowedOn;
     private DateTime _returnedOn;
     private DateTime _dueDate;
 
+    //Properties
     public DateTime BorrowedOn
     {
         get { return _borrowedOn; }
@@ -22,6 +24,7 @@ public struct LoanPeriod
         set { _returnedOn = value; }
     }
 
+    //Read only properties
     public DateTime DueDate
     {
         get { return _dueDate; }
@@ -39,6 +42,7 @@ public struct LoanPeriod
         }
     }
 
+    //Constructor
     public LoanPeriod(DateTime borrowedOn, DateTime returnedOn)
     {
         _borrowedOn = borrowedOn;

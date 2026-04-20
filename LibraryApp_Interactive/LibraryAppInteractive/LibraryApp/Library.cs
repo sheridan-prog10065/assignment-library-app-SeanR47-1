@@ -9,4 +9,20 @@ namespace LibraryAppInteractive;
 /// </summary>
 public class Library
 {
+    /// <summary>
+    /// FIELDS:
+    /// _bookList ~ list of titles of books in the library
+    ///_libIDGeneratorSeed ~ gives each book a dif id
+    /// </summary>
+    private List<Book> _bookList;
+    private int _libIDGeneratorSeed;
+    private const int DEFAULT_LIBID_START = 100;
+
+    //Constructor
+    public Library()
+    {
+        _bookList = new List<Book>();
+        _libIDGeneratorSeed = DEFAULT_LIBID_START;
+
+    }
 }
