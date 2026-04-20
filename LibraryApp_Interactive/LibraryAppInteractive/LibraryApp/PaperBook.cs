@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LibraryAppInteractive;
 
-internal class PaperBook : Book
+public class PaperBook : Book
 {
     /// <summary>
     /// MAX_BORROR_DAYS: max borrow days for a paper book
@@ -17,5 +17,15 @@ internal class PaperBook : Book
     public PaperBook(string bookName, string bookISBN) : base(bookName, bookISBN)
     {
 
+    }
+
+    public new LibraryAsset BorrowBook()
+    {
+        throw new NotImplementedException();
+    }
+
+    public new (TimeSpan, int, decimal) ReturnBook(int libID)
+    {
+        throw new NotImplementedException();
     }
 }

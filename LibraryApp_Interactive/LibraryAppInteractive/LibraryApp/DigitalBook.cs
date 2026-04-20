@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LibraryAppInteractive;
 
-internal class DigitalBook : Book
+public class DigitalBook : Book
 {
     /// <summary>
     /// _maxBorrowDays: max borrow days for a digital book
@@ -17,5 +17,20 @@ internal class DigitalBook : Book
     public DigitalBook(string bookName, string bookISBN) : base (bookName, bookISBN)
     {
         
+    }
+
+    public void DetermineLoanLiscense()
+    {
+        throw new NotImplementedException();
+    }
+
+    public new LibraryAsset BorrowBook()
+    {
+        throw new NotImplementedException();
+    }
+
+    public new (TimeSpan, int, decimal) ReturnBook(int libID)
+    {
+        throw new NotImplementedException();
     }
 }

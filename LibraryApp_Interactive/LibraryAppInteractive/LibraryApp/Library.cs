@@ -25,4 +25,29 @@ public class Library
         _libIDGeneratorSeed = DEFAULT_LIBID_START;
 
     }
+
+    public void CreateDefaultBooks()
+    {
+
+    }
+
+    public int DetermineLibID()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Book RegisterBook(string bookName, string bookISBN, string[] authors, BookType bookType, int nCopies)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Book FindBookByName(string bookName)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Book FindBookByISBN(string bookISBN)
+    {
+        throw new NotImplementedException();
+    }
 }

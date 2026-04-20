@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LibraryAppInteractive;
 
-internal class LibraryAsset
+public class LibraryAsset
 {
 
     /// <summary>
@@ -49,5 +49,12 @@ internal class LibraryAsset
         set { _loanPeriod = value; }
     }
 
+    public bool IsAvailable
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 }

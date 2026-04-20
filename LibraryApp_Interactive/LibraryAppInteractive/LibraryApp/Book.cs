@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LibraryAppInteractive;
 
-internal class Book
+public class Book
 {
     /// <summary>
     /// _bookName: name of book
@@ -14,14 +14,18 @@ internal class Book
     /// </summary>
     private string _bookName;
     private string _bookISBN;
+    private List<string> _bookAuthorsList;
+    private List<LibraryAsset> _libAssetsList;
     private List<string> _bookAuthorList;
-    private List<LibraryAsset> _libAssetList;
+    private IEnumerable<LibraryAsset> _libAssetList;
 
     //Constructor
     public Book(string bookName, string bookISBN)
     {
         _bookName = bookName;
         _bookISBN = bookISBN;
+        
+
     }
 
     /// <summary>
@@ -51,5 +55,28 @@ internal class Book
         set { _libAssetList = (List<LibraryAsset>)value; }
     }
 
-    
+    public bool CheckAvailability()
+    {
+        throw new NotImplementedException();
+    }
+
+    public LibraryAsset BorrowBook()
+    {
+        throw new NotImplementedException();
+    }
+
+    public (TimeSpan, int, decimal) ReturnBook(int libId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public LibraryAsset ReserveBook()
+    {
+        throw new NotImplementedException();
+    }
+
+    public LibraryAsset FindNextAvailableAsset()
+    {
+        throw new NotImplementedException();
+    }
 }
