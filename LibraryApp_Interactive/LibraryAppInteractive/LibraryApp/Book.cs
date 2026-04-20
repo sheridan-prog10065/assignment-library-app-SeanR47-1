@@ -12,10 +12,10 @@ public class Book
     /// _bookAuthorList: list of authors of book
     /// _libAssetList: list of assets of book
     /// </summary>
-    private string _bookName;
-    private string _bookISBN;
-    private List<LibraryAsset> _libAssetsList;
-    private List<string> _bookAuthorList;
+    private string _bookName = "";
+    private string _bookISBN = "";
+    private List<LibraryAsset> _libAssetsList = new();
+    private List<string> _bookAuthorList = new();
 
     //Constructor
     public Book(string bookName, string bookISBN)
@@ -53,9 +53,14 @@ public class Book
         set { _libAssetsList = value; }
     }
 
+    /// <summary>
+    /// Checks if asset is available
+    /// returns if it is available and if not returns next date is available
+    /// </summary>
+    /// <returns></returns>
     public (bool, DateTime?) CheckAvailability()
     {
-        var nextAsset = FindNextAvailableAsset();
+        LibraryAsset nextAsset = FindNextAvailableAsset();
 
         if (nextAsset.Status == AssetStatus.Available)
             return (true, null);
@@ -63,6 +68,11 @@ public class Book
             return (false, nextAsset.Loan.DueDate);
     }
 
+    /// <summary>
+    /// Borrows next available asset
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public LibraryAsset BorrowBook()
     {
         LibraryAsset asset = FindNextAvailableAsset();
@@ -76,6 +86,11 @@ public class Book
         return asset;
     }
 
+    /// <summary>
+    /// Gets borrowed asset by id
+    /// </summary>
+    /// <param name="libId"></param>
+    /// <returns></returns>
     public (TimeSpan, int, decimal) ReturnBook(int libId)
     {
         LibraryAsset asset = FindLibraryAsset(libId);
@@ -92,6 +107,10 @@ public class Book
         return (duration, late.Days, 0);
     }
 
+    /// <summary>
+    /// Reserves an asset if one is available
+    /// </summary>
+    /// <returns></returns>
     public LibraryAsset ReserveBook()
     {
         LibraryAsset asset = FindNextAvailableAsset();
@@ -101,6 +120,11 @@ public class Book
         return asset;
     }
 
+    /// <summary>
+    /// Finds the next available asset
+    /// if no available asset it will find the earliest due date
+    /// </summary>
+    /// <returns></returns>
     public LibraryAsset FindNextAvailableAsset()
     {
         LibraryAsset nextAsset = null;
@@ -110,7 +134,7 @@ public class Book
             if (asset.Status == AssetStatus.Available)
                 return asset;
 
-            if (asset.Status == null || (nextAsset.Loan.DueDate < nextAsset.Loan.DueDate && nextAsset.Status != AssetStatus.Reserved))
+            if (nextAsset == null || (nextAsset.Loan.DueDate < nextAsset.Loan.DueDate && nextAsset.Status != AssetStatus.Reserved))
             {
                 nextAsset = asset;
             }
@@ -119,9 +143,13 @@ public class Book
         return nextAsset;
     }
 
+    /// <summary>
+    /// finds asset by id
+    /// </summary>
+    /// <param name="libId"></param>
+    /// <returns></returns>
     public LibraryAsset FindLibraryAsset(int libId)
     {
-        LibraryAsset asset = _libAssetsList[libId];
-        return asset;
+        return _libAssetsList.FirstOrDefault(a => a.LibId == libId);
     }
 }

@@ -47,6 +47,7 @@ public class Library
     /// <summary>
     /// gives the book its properties based on whether its paper or digital
     /// adds assets
+    /// book gets added to book list
     /// </summary>
     /// <param name="bookName"></param>
     /// <param name="bookISBN"></param>

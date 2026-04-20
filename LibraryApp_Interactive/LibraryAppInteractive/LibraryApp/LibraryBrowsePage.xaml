@@ -4,10 +4,10 @@
              x:Class="LibraryAppInteractive.LibraryBrowsePage"
              Title="Browse Interactive Library">
 
-    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, *"
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, *, *"
           Margin="20, 20, 20, 20">
 
-        <Label Text="Search for a book"
+        <Label Text="Search for a book: "
                FontSize="Medium"
                Grid.Row="0"
                Grid.Column="0"
@@ -31,7 +31,7 @@
         <Label Text="Assets: "
                Grid.Row="2"
                Grid.Column="0"/>
-        
+
         <ListView x:Name="AssetsListView" HeightRequest="150"
                   Grid.Row="2"
                   Grid.Column="1"
@@ -52,6 +52,5 @@
                Grid.Column="0"
                Grid.ColumnSpan="3"
                Margin="10"/>
-
     </Grid>
 </ContentPage>
