@@ -5,8 +5,62 @@
              x:Class="LibraryAppInteractive.LibraryAdminPage"
              Title="Manage Book Assets">
     <ContentPage.Content>
-        <Label Text="Library Admin page for the Interactive Library App"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"/>         
+        <Grid RowDefinitions="*, Auto, Auto, Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="*, *, *"
+              Margin="20, 20, 20, 20">
+            <Label Text="Add a new book: "
+                   FontSize="Medium"
+                   Grid.Row="0"
+                   Grid.Column="0"/>
+            
+            <Entry x:Name="_txtBookName"
+                   Placeholder="Enter book name"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   Margin="20, 0, 0, 20"/>
+
+            <Label Text="Library assets: "
+                   FontSize="Medium"
+                   Grid.Row="1"
+                   Grid.Column="0"/>
+
+            <Entry x:Name="_txtISBN"
+                   Placeholder="Enter ISBN"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   Margin="20"/>
+
+            <Entry x:Name="_txtAuthors"
+                   Placeholder="Enter Authors (xxx, xxx...)"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   Margin="20"/>
+
+            <Picker x:Name="_pckBookType"
+                    Title="Select book type"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Margin="20"/>
+
+            <Entry x:Name="_txtCopies"
+                   Placeholder="Enter number of copies"
+                   Keyboard="Numeric"
+                   Grid.Row="5"
+                   Grid.Column="0"
+                   Margin="20"/>
+
+            <Button Text="Register" Clicked="OnRegister"
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Margin="20"/>
+
+            <Label x:Name="_lblResult"
+                   Text=""
+                   FontSize="Medium"
+                   Grid.Row="7"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Margin="10"/>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
