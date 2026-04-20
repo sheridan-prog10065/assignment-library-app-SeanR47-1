@@ -3,8 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LibraryAppInteractive.LibraryBrowsePage"
              Title="Browse Interactive Library">
-			 
-	<Label Text="Browse Library page for the Interactive Library App"
-	       HorizontalOptions="Center"
-	       VerticalOptions="Center"/> 
+
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, *, *"
+          Margin="20, 20, 20, 20">
+
+        <Label Text="Search for a book"
+               FontSize="Medium"
+               Grid.Row="0"
+               Grid.Column="0"
+               />
+
+        <Entry x:Name="_txtSearchBook"
+               Placeholder="Search for a book"
+               Grid.Row="0"
+               Grid.Column="1"
+               Margin="20, 0, 0, 0"/>
+
+        <Button Text="Search" Clicked="OnSearch"
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="20, 0, 0, 0"/>
+
+        <ListView x:Name="BooksListView" HeightRequest="150"
+                  Grid.Row="1"
+                  Grid.Column="0"/>
+
+        <Label Text="Assets: "
+               Grid.Row="2"
+               Grid.Column="0"/>
+        
+        <ListView x:Name="AssetsListView" HeightRequest="150"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  Margin="20"/>
+
+        <Button Text="Borrow" Clicked="OnBorrow"
+                Grid.Row="3"
+                Grid.Column="1"/>
+
+        <Button Text="Return" Clicked="OnReturn"
+                Grid.Row="3"
+                Grid.Column="2"/>
+
+    </Grid>
 </ContentPage>
