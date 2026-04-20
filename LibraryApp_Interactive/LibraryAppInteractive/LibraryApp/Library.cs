@@ -70,7 +70,7 @@ public class Library
         for (int i = 0; i < nCopies; i++)
         {
             int id = DetermineLibID();
-            var asset = new LibraryAsset(id, book);
+            LibraryAsset asset = new LibraryAsset(id, book);
             book.Assets.Add(asset);
         }
 

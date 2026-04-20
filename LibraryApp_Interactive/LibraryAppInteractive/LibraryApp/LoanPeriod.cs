@@ -42,12 +42,17 @@ public struct LoanPeriod
         }
     }
 
+    public TimeSpan LoanDuration
+    {
+        get { return _returnedOn - _borrowedOn; }
+    }
+
     //Constructor
-    public LoanPeriod(DateTime borrowedOn, DateTime returnedOn)
+    public LoanPeriod(DateTime borrowedOn, DateTime dueDate)
     {
         _borrowedOn = borrowedOn;
-        _returnedOn = returnedOn;
+        _dueDate = dueDate;
 
-        _dueDate = borrowedOn.AddDays(14);
+        _returnedOn = DateTime.MinValue;
     }
 }

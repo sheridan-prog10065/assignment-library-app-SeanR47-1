@@ -14,7 +14,6 @@ public class Book
     /// </summary>
     private string _bookName;
     private string _bookISBN;
-    private List<string> _bookAuthorsList;
     private List<LibraryAsset> _libAssetsList;
     private List<string> _bookAuthorList;
 
@@ -54,28 +53,75 @@ public class Book
         set { _libAssetsList = value; }
     }
 
-    public bool CheckAvailability()
+    public (bool, DateTime?) CheckAvailability()
     {
-        throw new NotImplementedException();
+        var nextAsset = FindNextAvailableAsset();
+
+        if (nextAsset.Status == AssetStatus.Available)
+            return (true, null);
+        else
+            return (false, nextAsset.Loan.DueDate);
     }
 
     public LibraryAsset BorrowBook()
     {
-        throw new NotImplementedException();
+        LibraryAsset asset = FindNextAvailableAsset();
+
+        if (asset.Status != AssetStatus.Available)
+            throw new Exception("Book is not available. Please reserve instead.");
+
+        asset.Status = AssetStatus.Loaned;
+        asset.Loan = new LoanPeriod(DateTime.Now, DateTime.Now.AddDays(14));
+
+        return asset;
     }
 
     public (TimeSpan, int, decimal) ReturnBook(int libId)
     {
-        throw new NotImplementedException();
+        LibraryAsset asset = FindLibraryAsset(libId);
+        LoanPeriod loan = asset.Loan;
+
+        loan.ReturnedOn = DateTime.Now;
+        asset.Loan = loan;
+
+        TimeSpan duration = loan.LoanDuration;
+        TimeSpan late = loan.LatePeriod;
+
+        asset.Status = AssetStatus.Available;
+
+        return (duration, late.Days, 0);
     }
 
     public LibraryAsset ReserveBook()
     {
-        throw new NotImplementedException();
+        LibraryAsset asset = FindNextAvailableAsset();
+
+        asset.Status = AssetStatus.Reserved;
+
+        return asset;
     }
 
     public LibraryAsset FindNextAvailableAsset()
     {
-        throw new NotImplementedException();
+        LibraryAsset nextAsset = null;
+
+        foreach (LibraryAsset asset in _libAssetsList)
+        {
+            if (asset.Status == AssetStatus.Available)
+                return asset;
+
+            if (asset.Status == null || (nextAsset.Loan.DueDate < nextAsset.Loan.DueDate && nextAsset.Status != AssetStatus.Reserved))
+            {
+                nextAsset = asset;
+            }
+        }
+
+        return nextAsset;
+    }
+
+    public LibraryAsset FindLibraryAsset(int libId)
+    {
+        LibraryAsset asset = _libAssetsList[libId];
+        return asset;
     }
 }
